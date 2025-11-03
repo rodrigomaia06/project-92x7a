@@ -67,12 +67,24 @@ async function loadMarkdown(container) {
   const src = container.dataset.contentSrc;
   if (!src) return;
 
+  const resolveContentUrl = (path) => {
+    if (!path) return null;
+    if (/^(?:https?:)?\/\//i.test(path)) return path;
+    try {
+      const base = container.baseURI || window.location.href;
+      return new URL(path, base).toString();
+    } catch {
+      return path;
+    }
+  };
+
   const lang = document.body.dataset.lang || 'en';
   const messages = DEFAULT_MESSAGES[lang] || DEFAULT_MESSAGES.en;
-
+  const url = resolveContentUrl(src);
+  if (!url) return;
   try {
-    const response = await fetch(src, { cache: 'no-store' });
-    if (!response.ok) throw new Error(`Failed to load ${src}`);
+    const response = await fetch(url, { cache: 'no-store' });
+    if (!response.ok) throw new Error(`Failed to load ${url}`);
     const raw = await response.text();
     const { meta, body } = parseFrontMatter(raw);
     const trimmed = body.trim();
