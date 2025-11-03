@@ -443,9 +443,10 @@ summary.menu-link::marker {
 }
 
 .pagination {
-  display: flex;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
   align-items: center;
-  justify-content: center;
+  justify-items: center;
   gap: var(--space-s);
   margin-top: var(--space-xl);
   padding-top: var(--space-m);
@@ -475,6 +476,7 @@ summary.menu-link::marker {
 
 .pagination-numbers {
   display: flex;
+  justify-content: center;
   gap: var(--space-xxs);
 }
 
@@ -496,6 +498,14 @@ summary.menu-link::marker {
 .pagination-number:hover:not(.current),
 .pagination-number:focus-visible:not(.current) {
   background: var(--color-accent-5);
+}
+
+.pagination-button.prev {
+  justify-self: end;
+}
+
+.pagination-button.next {
+  justify-self: start;
 }
 
 .site-footer {
@@ -796,13 +806,14 @@ summary.menu-link::marker {
   }
 
   .pagination {
-    flex-direction: column;
-    align-items: flex-start;
+    width: 100%;
+    grid-template-columns: auto 1fr auto;
     gap: var(--space-xs);
   }
 
   .pagination-numbers {
     flex-wrap: wrap;
+    justify-content: center;
   }
 }
 
