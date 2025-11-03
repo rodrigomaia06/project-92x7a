@@ -10,28 +10,32 @@
     </div>
     <nav class="site-nav" aria-label="Primary navigation">
       <ul class="menu">
-        <li class="menu-item"><a data-link="index.html">Home</a></li>
-        <li class="menu-item"><a data-link="index.html#main-content">Articles</a></li>
-        <li class="menu-item has-children">
-          <button class="menu-toggle" type="button" aria-expanded="false">About me</button>
-          <ul class="sub-menu">
-            <li><a data-link="menu/contact.html">Contact</a></li>
-            <li><a data-link="menu/curriculum-vitae.html">Resume</a></li>
-            <li><a data-link="menu/work-with-me.html">Work with me</a></li>
-            <li><a data-link="menu/fees.html">Fees</a></li>
-          </ul>
+        <li class="menu-item"><a class="menu-link" data-link="index.html">Home</a></li>
+        <li class="menu-item"><a class="menu-link" data-link="index.html#main-content">Articles</a></li>
+        <li class="menu-item">
+          <details class="menu-group">
+            <summary class="menu-link">About me</summary>
+            <ul class="sub-menu">
+              <li><a data-link="menu/contact.html">Contact</a></li>
+              <li><a data-link="menu/curriculum-vitae.html">Resume</a></li>
+              <li><a data-link="menu/work-with-me.html">Work with me</a></li>
+              <li><a data-link="menu/fees.html">Fees</a></li>
+            </ul>
+          </details>
         </li>
-        <li class="menu-item has-children">
-          <button class="menu-toggle" type="button" aria-expanded="false">Approaches</button>
-          <ul class="sub-menu">
-            <li><a data-link="menu/emdr.html">EMDR</a></li>
-            <li><a data-link="menu/clinical-hypnotherapy.html">Clinical Hypnotherapy</a></li>
-            <li><a data-link="menu/internal-family-systems.html">Internal Family Systems (IFS)</a></li>
-            <li><a data-link="menu/psychogenealogy.html">Psychogenealogy &amp; Transgenerational Therapy</a></li>
-            <li><a data-link="menu/clinical-psychology.html">Clinical Psychology</a></li>
-            <li><a data-link="menu/clinical-supervision.html">Clinical Supervision</a></li>
-            <li><a data-link="menu/family-and-couple-therapy.html">Family &amp; Couple Therapy</a></li>
-          </ul>
+        <li class="menu-item">
+          <details class="menu-group">
+            <summary class="menu-link">Approaches</summary>
+            <ul class="sub-menu">
+              <li><a data-link="menu/emdr.html">EMDR</a></li>
+              <li><a data-link="menu/clinical-hypnotherapy.html">Clinical Hypnotherapy</a></li>
+              <li><a data-link="menu/internal-family-systems.html">Internal Family Systems (IFS)</a></li>
+              <li><a data-link="menu/psychogenealogy.html">Psychogenealogy &amp; Transgenerational Therapy</a></li>
+              <li><a data-link="menu/clinical-psychology.html">Clinical Psychology</a></li>
+              <li><a data-link="menu/clinical-supervision.html">Clinical Supervision</a></li>
+              <li><a data-link="menu/family-and-couple-therapy.html">Family &amp; Couple Therapy</a></li>
+            </ul>
+          </details>
         </li>
       </ul>
     </nav>

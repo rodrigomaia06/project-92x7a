@@ -147,6 +147,7 @@ a:focus-visible {
 .menu {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   gap: var(--space-xs);
   list-style: none;
   padding: 0;
@@ -155,38 +156,59 @@ a:focus-visible {
 
 .menu-item {
   position: relative;
+  list-style: none;
+  display: flex;
 }
 
-.menu-item > a,
-.menu-toggle {
+.menu-item > .menu-link,
+.menu-group > .menu-link {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.35rem 0.75rem;
-  border-radius: 999px;
+  padding: 0.45rem 0.9rem;
+  border-radius: var(--radius);
   background: rgba(255, 255, 255, 0.65);
   text-decoration: none;
   font-size: 0.9rem;
-  line-height: 1.2;
+  line-height: 1.25;
   border: none;
   cursor: pointer;
   font-family: inherit;
   color: inherit;
+  white-space: nowrap;
+  -webkit-appearance: none;
+  appearance: none;
+  transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
 }
 
-.menu-item > a:hover,
-.menu-item > a:focus-visible,
-.menu-toggle:hover,
-.menu-toggle:focus-visible {
+summary.menu-link {
+  list-style: none;
+}
+
+summary.menu-link::-webkit-details-marker,
+summary.menu-link::marker {
+  display: none;
+}
+
+.menu-link:hover,
+.menu-link:focus-visible,
+.menu-group:hover > .menu-link,
+.menu-group[open] > .menu-link {
   background: var(--color-base-2);
   color: var(--color-contrast);
   text-decoration: none;
 }
 
-.menu-item.has-children .sub-menu {
+.menu-group {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.sub-menu {
   display: none;
   position: absolute;
-  top: 100%;
+  top: calc(100% + 0.35rem);
   left: 0;
   min-width: 240px;
   padding: var(--space-xs) 0;
@@ -194,22 +216,22 @@ a:focus-visible {
   list-style: none;
   background: var(--color-base-2);
   border-radius: var(--radius);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
   z-index: 20;
 }
 
-.menu-item.has-children .sub-menu.open {
-  display: block;
-}
-
-.menu-item.has-children:focus-within > .sub-menu {
+.menu-group[open] > .sub-menu {
   display: block;
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .menu-item.has-children:hover > .sub-menu {
+  .menu-group:hover > .sub-menu {
     display: block;
   }
+}
+
+.sub-menu li {
+  list-style: none;
 }
 
 .sub-menu li a {
@@ -677,22 +699,26 @@ a:focus-visible {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.5rem 1rem;
-  border-radius: 12px;
-  border: 1px solid rgba(20, 27, 26, 0.15);
-  background: var(--color-base-2);
-  color: var(--color-contrast);
-  font-weight: 600;
+  padding: 0.45rem 0.9rem;
+  border-radius: var(--radius);
+  border: none;
+  background: rgba(255, 255, 255, 0.65);
+  color: inherit;
+  font-family: inherit;
   text-decoration: none;
   cursor: pointer;
   white-space: nowrap;
   gap: var(--space-xxs);
-  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  font-size: 0.9rem;
+  line-height: 1.25;
+  -webkit-appearance: none;
+  appearance: none;
+  transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .share-button:link,
 .share-button:visited {
-  color: var(--color-contrast);
+  color: inherit;
 }
 
 .share-label {
@@ -702,9 +728,8 @@ a:focus-visible {
 
 .share-button:hover,
 .share-button:focus-visible {
-  background: var(--color-accent-4);
+  background: var(--color-base-2);
   color: var(--color-contrast);
-  border-color: rgba(20, 27, 26, 0.25);
 }
 
 .share-hint {
@@ -726,21 +751,38 @@ a:focus-visible {
 @media (max-width: 720px) {
   .menu {
     gap: var(--space-xxs);
+    justify-content: center;
   }
 
-  .menu-item.has-children .sub-menu {
+  .menu-item {
+    flex: 1 1 calc(50% - var(--space-xxs));
+    max-width: 220px;
+    justify-content: center;
+  }
+
+  .menu-item > .menu-link,
+  .menu-group > .menu-link {
+    width: 100%;
+  }
+
+  .menu-item > .menu-group,
+  .menu-group {
+    width: 100%;
+  }
+
+  .sub-menu {
     position: static;
-    box-shadow: none;
-    border: 1px solid rgba(0, 0, 0, 0.06);
+    display: none;
     margin-top: var(--space-xxs);
     width: 100%;
+    padding: var(--space-xs);
+    border-radius: var(--radius);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(0, 0, 0, 0.06);
   }
 
-  .menu-item > a,
-  .menu-toggle {
-    background: rgba(255, 255, 255, 0.85);
-    width: 100%;
-    justify-content: flex-start;
+  .menu-group[open] > .sub-menu {
+    display: block;
   }
 
   .language-switcher {

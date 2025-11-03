@@ -14,7 +14,7 @@ async function loadIncludes() {
       if (name === 'header') {
         applyLanguageSwitcher(container);
         applyNavigationLinks(container);
-        setupMenuToggles(container);
+        setupMenuDetails(container);
       } else if (name === 'footer') {
         applyNavigationLinks(container);
       }
@@ -75,13 +75,70 @@ function applyLanguageSwitcher(container) {
   }
 }
 
-function setupMenuToggles(root = document) {
-  root.querySelectorAll('.menu-toggle').forEach(button => {
-    button.addEventListener('click', () => {
-      const expanded = button.getAttribute('aria-expanded') === 'true';
-      button.setAttribute('aria-expanded', String(!expanded));
-      const submenu = button.nextElementSibling;
-      if (submenu) submenu.classList.toggle('open', !expanded);
+function setupMenuDetails(root = document) {
+  const groups = root.querySelectorAll('details.menu-group');
+  if (!groups.length) return;
+
+  const hoverMedia = window.matchMedia('(hover: hover) and (pointer: fine)');
+  const supportsHover = hoverMedia.matches;
+
+  groups.forEach(group => {
+    if (group.dataset.menuInitialized === 'true') return;
+    group.dataset.menuInitialized = 'true';
+
+    const summary = group.querySelector('summary');
+    if (!summary) return;
+
+    if (supportsHover) {
+      let lastPointerType = '';
+
+      summary.addEventListener('pointerdown', (event) => {
+        lastPointerType = event.pointerType;
+      });
+
+      group.addEventListener('mouseenter', () => {
+        group.open = true;
+      });
+
+      group.addEventListener('mouseleave', () => {
+        group.open = false;
+      });
+
+      summary.addEventListener('click', (event) => {
+        if (event.detail !== 0 && lastPointerType !== 'touch' && lastPointerType !== 'pen') {
+          event.preventDefault();
+        }
+        lastPointerType = '';
+      });
+
+      summary.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          group.open = !group.open;
+        }
+        if (event.key === 'Escape') {
+          group.open = false;
+          summary.focus();
+        }
+      });
+    } else {
+      summary.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') {
+          group.open = false;
+          summary.focus();
+        }
+      });
+    }
+
+    summary.addEventListener('focus', () => {
+      group.open = true;
+    });
+
+    group.addEventListener('focusout', (event) => {
+      const next = event.relatedTarget;
+      if (!next || !group.contains(next)) {
+        group.open = false;
+      }
     });
   });
 }
