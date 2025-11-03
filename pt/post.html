@@ -1,53 +1,73 @@
 <!DOCTYPE html>
 <html lang="pt">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Artigo | Matilde Batalha</title>
-  <meta name="description" content="Arquivo de artigo publicado por Matilde Batalha.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cardo:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body data-lang="pt">
-  <a class="skip-link" href="#main-content">Saltar para o conteúdo</a>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <title>
+   Artigo | Matilde Batalha
+  </title>
+  <meta content="Arquivo de artigo publicado por Matilde Batalha." name="description"/>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cardo:ital@0;1&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+  <link href="styles.css" rel="stylesheet"/>
+ </head>
+ <body data-lang="pt">
+  <a class="skip-link" href="#main-content">
+   Saltar para o conteúdo
+  </a>
   <div class="site">
-    <div data-include="header" data-current-lang="pt" data-pt-url="post.html" data-en-url="/en/post.html" data-sync-query="true"></div>
-
-
-    <main id="main-content" class="post-page">
-      <section class="post-hero">
-        <div class="container">
-          <p class="post-back"><a href="index.html#main-content">← Voltar aos artigos</a></p>
-          <h1 id="post-title">A carregar…</h1>
-          <div class="post-meta">
-            <time id="post-date" datetime=""></time>
-            <span class="meta-separator" aria-hidden="true">—</span>
-            <span class="post-author">por <span class="author-name">Matilde Batalha</span></span>
-            <span id="post-categories" class="post-categories"></span>
-          </div>
-        </div>
-      </section>
-
-      <section class="post-body">
-        <div class="container">
-          <article id="post-article" class="post-full">
-            <p class="loading-message">A carregar conteúdo…</p>
-          </article>
-        </div>
-      </section>
-    </main>
-
-        <div data-include="footer"></div>
-
+   <div data-current-lang="pt" data-en-url="en/post.html" data-include="header" data-pt-url="pt/post.html" data-sync-query="true">
+   </div>
+   <main class="post-page" id="main-content">
+    <section class="post-hero">
+     <div class="container">
+      <p class="post-back">
+       <a href="index.html#main-content">
+        ← Voltar aos artigos
+       </a>
+      </p>
+      <h1 id="post-title">
+       A carregar…
+      </h1>
+      <div class="post-meta">
+       <time datetime="" id="post-date">
+       </time>
+       <span aria-hidden="true" class="meta-separator">
+        —
+       </span>
+       <span class="post-author">
+        por
+        <span class="author-name">
+         Matilde Batalha
+        </span>
+       </span>
+       <span class="post-categories" id="post-categories">
+       </span>
+      </div>
+     </div>
+    </section>
+    <section class="post-body">
+     <div class="container">
+      <article class="post-full" id="post-article">
+       <p class="loading-message">
+        A carregar conteúdo…
+       </p>
+      </article>
+     </div>
+    </section>
+   </main>
+   <div data-include="footer">
+   </div>
   </div>
-
-    <script type="module" src="scripts/include.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/dompurify@3.0.6/dist/purify.min.js" crossorigin="anonymous"></script>
+  <script src="scripts/include.js" type="module">
+  </script>
+  <script crossorigin="anonymous" src="https://cdn.jsdelivr.net/npm/marked/marked.min.js">
+  </script>
+  <script crossorigin="anonymous" src="https://cdn.jsdelivr.net/npm/dompurify@3.0.6/dist/purify.min.js">
+  </script>
   <script>
-    const monthFormatter = new Intl.DateTimeFormat('pt-PT', { day: 'numeric', month: 'long', year: 'numeric' });
+   const monthFormatter = new Intl.DateTimeFormat('pt-PT', { day: 'numeric', month: 'long', year: 'numeric' });
 
     if (window.marked) {
       marked.setOptions({ headerIds: false, mangle: false, breaks: false });
@@ -187,5 +207,5 @@
 
     loadPost();
   </script>
-</body>
+ </body>
 </html>

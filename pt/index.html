@@ -1,63 +1,78 @@
 <!DOCTYPE html>
 <html lang="pt">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Matilde Batalha | Psicologia Clínica</title>
-  <meta name="description" content="Psicologia Clínica, Psicoterapia, Terapia Familiar e de Casal">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cardo:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body data-lang="pt">
-  <a class="skip-link" href="#main-content">Saltar para o conteúdo</a>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <title>
+   Matilde Batalha | Psicologia Clínica
+  </title>
+  <meta content="Psicologia Clínica, Psicoterapia, Terapia Familiar e de Casal" name="description"/>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cardo:ital@0;1&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+  <link href="styles.css" rel="stylesheet"/>
+ </head>
+ <body data-lang="pt">
+  <a class="skip-link" href="#main-content">
+   Saltar para o conteúdo
+  </a>
   <div class="site">
-    <div data-include="header" data-current-lang="pt" data-pt-url="index.html" data-en-url="/en/index.html"></div>
-
-
-    <!-- ====== MAIN ====== -->
-    <main id="main-content">
-      <section class="hero">
-        <div class="container hero-inner">
-          <div class="hero-copy">
-            <h1>Sobre mim…</h1>
-            <p>Olá, o meu nome é Matilde Batalha. Sou psicóloga e psicoterapeuta. Este é o meu espaço profissional onde partilho a forma como integro diferentes abordagens terapêuticas.</p>
-            <p>Acredito na singularidade de cada pessoa — não existe uma intervenção única que sirva todas as histórias. Continuo a formar-me para poder acompanhar-te com rigor, respeito e humanidade.</p>
-            <p>Neste site encontras artigos, recursos e reflexões sobre saúde mental, relações humanas, natureza e o nosso caminho interior.</p>
-          </div>
-          <figure class="hero-portrait">
-            <img src="static/site/hero.jpg" alt="Retrato de Matilde Batalha" width="346" height="400" loading="lazy">
-          </figure>
-        </div>
-      </section>
-
-      <section class="articles">
-        <div class="container">
-          <h2>Artigos para ler e comentar – “Da discussão nasce a luz”</h2>
-
-          <div class="post-list" data-state="loading">
-            <p class="loading-message">A carregar artigos…</p>
-          </div>
-
-          <nav class="pagination" aria-label="Paginação">
-            <button class="pagination-button prev" type="button" aria-label="Página anterior">←</button>
-            <div class="pagination-numbers"></div>
-            <button class="pagination-button next" type="button" aria-label="Próxima página">→</button>
-          </nav>
-        </div>
-      </section>
-
-    </main>
-
-        <div data-include="footer"></div>
-
+   <div data-current-lang="pt" data-en-url="en/index.html" data-include="header" data-pt-url="pt/index.html">
+   </div>
+   <!-- ====== MAIN ====== -->
+   <main id="main-content">
+    <section class="hero">
+     <div class="container hero-inner">
+      <div class="hero-copy">
+       <h1>
+        Sobre mim…
+       </h1>
+       <p>
+        Olá, o meu nome é Matilde Batalha. Sou psicóloga e psicoterapeuta. Este é o meu espaço profissional onde partilho a forma como integro diferentes abordagens terapêuticas.
+       </p>
+       <p>
+        Acredito na singularidade de cada pessoa — não existe uma intervenção única que sirva todas as histórias. Continuo a formar-me para poder acompanhar-te com rigor, respeito e humanidade.
+       </p>
+       <p>
+        Neste site encontras artigos, recursos e reflexões sobre saúde mental, relações humanas, natureza e o nosso caminho interior.
+       </p>
+      </div>
+      <figure class="hero-portrait">
+       <img alt="Retrato de Matilde Batalha" height="400" loading="lazy" src="static/site/hero.jpg" width="346"/>
+      </figure>
+     </div>
+    </section>
+    <section class="articles">
+     <div class="container">
+      <h2>
+       Artigos para ler e comentar – “Da discussão nasce a luz”
+      </h2>
+      <div class="post-list" data-state="loading">
+       <p class="loading-message">
+        A carregar artigos…
+       </p>
+      </div>
+      <nav aria-label="Paginação" class="pagination">
+       <button aria-label="Página anterior" class="pagination-button prev" type="button">
+        ←
+       </button>
+       <div class="pagination-numbers">
+       </div>
+       <button aria-label="Próxima página" class="pagination-button next" type="button">
+        →
+       </button>
+      </nav>
+     </div>
+    </section>
+   </main>
+   <div data-include="footer">
+   </div>
   </div>
-
   <!-- ====== SCRIPTS ====== -->
-    <script type="module" src="scripts/include.js"></script>
+  <script src="scripts/include.js" type="module">
+  </script>
   <script>
-    window.addEventListener('DOMContentLoaded', () => {
+   window.addEventListener('DOMContentLoaded', () => {
     const monthFormatter = new Intl.DateTimeFormat('pt-PT', { day: 'numeric', month: 'short', year: 'numeric' });
     const POSTS_PER_PAGE = 8;
     let currentPage = 1;
@@ -216,5 +231,5 @@
     loadPosts();
     });
   </script>
-</body>
+ </body>
 </html>

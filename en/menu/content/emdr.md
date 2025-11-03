@@ -1,4 +1,4 @@
-![](/en/static/pages/emdr/image-01.jpg)
+![](../static/pages/emdr/image-01.jpg)
 
 O **EMDR – Eye Movement Desensitization and Reprocessing**–  é um método de dessensibilização e reprocessamento de experiências emocionalmente traumáticas por meio de estimulação bilateral do cérebro, a qual promove a comunicação entre os dois hemisférios cerebrais.
 

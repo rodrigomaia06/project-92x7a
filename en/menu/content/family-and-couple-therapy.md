@@ -23,4 +23,4 @@ As dificuldades são trabalhadas como responsabilidade partilhada. Por vezes sã
 - Conflitos na parentalidade
 - Relações extraconjugais
 
-[![](/en/static/pages/terapia-familiar-e-de-casal/image-01.jpg "casais")](https://matildebatalha.pt/wp-content/uploads/2011/11/casais3.jpg)
+[![](../static/pages/terapia-familiar-e-de-casal/image-01.jpg "casais")](https://matildebatalha.pt/wp-content/uploads/2011/11/casais3.jpg)

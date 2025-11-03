@@ -1,4 +1,4 @@
-[![](/en/static/pages/hipnoterapia-clinica/image-01.png "fotos-hipnose")](https://matildebatalha.pt/wp-content/uploads/2011/11/fotos-hipnose2.png)
+[![](../static/pages/hipnoterapia-clinica/image-01.png "fotos-hipnose")](https://matildebatalha.pt/wp-content/uploads/2011/11/fotos-hipnose2.png)
 
 A Hipnose caracteriza-se por um profundo estado de relaxamento da mente e do corpo, que permite que a pessoa, mude o seu foco de concentração do exterior para o interior. Trata-se de um estado de concentração focada no interior. A Hipnose Clínica constitui-se como uma ferramenta terapêutica eficaz, que permite que cada individuo aplique o imenso potencial da mente na resolução de inúmeros problemas de saúde.
 

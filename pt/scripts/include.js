@@ -25,6 +25,25 @@ async function loadIncludes() {
   }
 }
 
+const SITE_BASE = (() => {
+  const match = window.location.pathname.match(/^(.*?)(?=\/(?:en|pt)(?:\/|$))/);
+  if (match) {
+    const base = match[0];
+    return base.endsWith('/') ? base.slice(0, -1) : base;
+  }
+  return '';
+})();
+
+function resolveSitePath(value) {
+  if (!value || value === '#') return value;
+  if (/^(https?:|mailto:|tel:)/i.test(value)) return value;
+  if (value.startsWith('/')) {
+    const trimmed = value.replace(/^\/+/, '');
+    return SITE_BASE ? `${SITE_BASE}/${trimmed}` : `/${trimmed}`;
+  }
+  return SITE_BASE ? `${SITE_BASE}/${value}` : `/${value}`;
+}
+
 function applyLanguageSwitcher(container) {
   const current = container.dataset.currentLang || document.body.dataset.lang || 'pt';
   let ptUrl = container.dataset.ptUrl || document.body.dataset.langPt || '#';
@@ -43,25 +62,8 @@ function applyLanguageSwitcher(container) {
     enUrl = appendQuery(enUrl);
   }
 
-  const normalizeLangUrl = (url) => {
-    if (!url || url === '#') return url;
-    if (/^(https?:|mailto:|tel:|\/)/i.test(url)) return url;
-    try {
-      const absolute = new URL(url, `${window.location.origin}/`);
-      return `${absolute.pathname}${absolute.search}${absolute.hash}`;
-    } catch {
-      return url;
-    }
-  };
-
-  if (current === 'pt') {
-    enUrl = normalizeLangUrl(enUrl);
-  } else if (current === 'en') {
-    ptUrl = normalizeLangUrl(ptUrl);
-  } else {
-    ptUrl = normalizeLangUrl(ptUrl);
-    enUrl = normalizeLangUrl(enUrl);
-  }
+  ptUrl = resolveSitePath(ptUrl);
+  enUrl = resolveSitePath(enUrl);
 
   if (ptLink) {
     ptLink.href = ptUrl;
@@ -99,8 +101,10 @@ function applyNavigationLinks(container) {
     let resolved;
     if (prefix) {
       resolved = prefix.endsWith('/') ? `${prefix}${target}` : `${prefix}/${target}`;
-    } else if (target.startsWith('../') || target.startsWith('./') || target.startsWith('/')) {
+    } else if (target.startsWith('../') || target.startsWith('./')) {
       resolved = target;
+    } else if (target.startsWith('/')) {
+      resolved = resolveSitePath(target);
     } else {
       const langSegment = (currentLang || 'pt').replace(/[^a-z-]/gi, '') || 'pt';
       const langToken = `/${langSegment}/`;
