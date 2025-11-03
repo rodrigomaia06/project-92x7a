@@ -89,6 +89,24 @@ function setupMenuDetails(root = document) {
     const summary = group.querySelector('summary');
     if (!summary) return;
 
+    const submenu = group.querySelector('.sub-menu');
+    let closeTimeout = 0;
+
+    const openGroup = () => {
+      clearTimeout(closeTimeout);
+      group.open = true;
+    };
+
+    const scheduleClose = () => {
+      clearTimeout(closeTimeout);
+      closeTimeout = window.setTimeout(() => {
+        if (group.matches(':hover')) return;
+        const active = document.activeElement;
+        if (active && group.contains(active)) return;
+        group.open = false;
+      }, 120);
+    };
+
     if (supportsHover) {
       let lastPointerType = '';
 
@@ -96,13 +114,12 @@ function setupMenuDetails(root = document) {
         lastPointerType = event.pointerType;
       });
 
-      group.addEventListener('mouseenter', () => {
-        group.open = true;
-      });
-
-      group.addEventListener('mouseleave', () => {
-        group.open = false;
-      });
+      group.addEventListener('mouseenter', openGroup);
+      group.addEventListener('mouseleave', scheduleClose);
+      if (submenu) {
+        submenu.addEventListener('mouseenter', openGroup);
+        submenu.addEventListener('mouseleave', scheduleClose);
+      }
 
       summary.addEventListener('click', (event) => {
         if (event.detail !== 0 && lastPointerType !== 'touch' && lastPointerType !== 'pen') {
@@ -115,6 +132,7 @@ function setupMenuDetails(root = document) {
         if (event.key === 'Enter' || event.key === ' ') {
           event.preventDefault();
           group.open = !group.open;
+          if (!group.open) clearTimeout(closeTimeout);
         }
         if (event.key === 'Escape') {
           group.open = false;
@@ -131,7 +149,7 @@ function setupMenuDetails(root = document) {
     }
 
     summary.addEventListener('focus', () => {
-      group.open = true;
+      openGroup();
     });
 
     group.addEventListener('focusout', (event) => {
