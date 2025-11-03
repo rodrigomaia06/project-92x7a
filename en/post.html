@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Article | Matilde Batalha</title>
+  <meta name="description" content="Read archived articles from Matilde Batalha.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cardo:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-lang="en">
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <div class="site">
+    <div data-include="header" data-current-lang="en" data-pt-url="/pt/post.html" data-en-url="/en/post.html" data-sync-query="true"></div>
+
+
+    <main id="main-content" class="post-page">
+      <section class="post-hero">
+        <div class="container">
+          <p class="post-back"><a href="index.html#main-content">← Back to articles</a></p>
+          <h1 id="post-title">Loading…</h1>
+          <div class="post-meta">
+            <time id="post-date" datetime=""></time>
+            <span class="meta-separator" aria-hidden="true">—</span>
+            <span class="post-author">by <span class="author-name">Matilde Batalha</span></span>
+            <span id="post-categories" class="post-categories"></span>
+          </div>
+        </div>
+      </section>
+
+      <section class="post-body">
+        <div class="container">
+          <article id="post-article" class="post-full">
+            <p class="loading-message">Loading article…</p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+        <div data-include="footer"></div>
+
+  </div>
+
+    <script type="module" src="scripts/include.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dompurify@3.0.6/dist/purify.min.js" crossorigin="anonymous"></script>
+  <script>
+    const monthFormatter = new Intl.DateTimeFormat('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+
+    if (window.marked) {
+      marked.setOptions({ headerIds: false, mangle: false, breaks: false });
+    }
+
+    function parseFrontMatter(raw) {
+      const match = raw.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n([\s\S]*)$/);
+      if (!match) return { meta: {}, content: raw };
+      const [, metaBlock, content] = match;
+      const meta = {};
+      metaBlock.split(/\r?\n/).forEach(line => {
+        if (!line.trim()) return;
+        const [key, ...rest] = line.split(':');
+        if (!key || rest.length === 0) return;
+        const value = rest.join(':').trim();
+        if (key === 'categories') {
+          try {
+            meta[key] = JSON.parse(value);
+          } catch {
+            meta[key] = value.replace(/[\[\]]/g, '')
+              .split(',')
+              .map(v => v.trim().replace(/^"|"$/g, ''))
+              .filter(Boolean);
+          }
+        } else if (value.startsWith('"') && value.endsWith('"')) {
+          meta[key] = value.slice(1, -1);
+        } else {
+          meta[key] = value;
+        }
+      });
+      return { meta, content };
+    }
+
+    function applyMeta(meta) {
+      if (meta.title) {
+        document.title = `${meta.title} | Matilde Batalha`;
+        document.getElementById('post-title').textContent = meta.title;
+      }
+      if (meta.date) {
+        const dateEl = document.getElementById('post-date');
+        dateEl.dateTime = meta.date;
+        const date = new Date(meta.date);
+        dateEl.textContent = Number.isNaN(date.getTime()) ? '' : monthFormatter.format(date);
+      }
+      const categoriesEl = document.getElementById('post-categories');
+      if (Array.isArray(meta.categories) && meta.categories.length) {
+        categoriesEl.textContent = '';
+        const prefix = document.createElement('span');
+        prefix.className = 'category-prefix';
+        prefix.textContent = 'in ';
+        categoriesEl.append(prefix);
+        meta.categories.forEach((cat, index) => {
+          const span = document.createElement('span');
+          span.className = 'category';
+          span.textContent = cat;
+          categoriesEl.append(span);
+          if (index < meta.categories.length - 1) categoriesEl.append(document.createTextNode(', '));
+        });
+      } else {
+        categoriesEl.remove();
+      }
+    }
+
+    function cleanWordPressArtifacts(articleEl) {
+      articleEl.querySelectorAll('p').forEach(node => {
+        const text = node.textContent.trim();
+        if (text.startsWith('Like:') || text.includes('Loading')) {
+          node.remove();
+        }
+      });
+      articleEl.querySelectorAll('.sharedaddy, .jp-relatedposts, .wpcnt, .sd-content').forEach(node => node.remove());
+    }
+
+    function renderShareActions(articleEl) {
+      const title = document.getElementById('post-title').textContent.trim();
+      const url = window.location.href;
+      const encodedUrl = encodeURIComponent(url);
+      const encodedText = encodeURIComponent(title);
+
+      const share = document.createElement('aside');
+      share.className = 'share-actions';
+      share.innerHTML = `
+        <h2>Share</h2>
+        <div class="share-buttons">
+          <button type="button" class="share-button share-copy"><span class="share-label">Copy link</span></button>
+          <a class="share-button" href="https://api.whatsapp.com/send?text=${encodedText}%20${encodedUrl}" target="_blank" rel="noopener"><span class="share-label">WhatsApp</span></a>
+          <a class="share-button" href="https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}" target="_blank" rel="noopener"><span class="share-label">Facebook</span></a>
+          <a class="share-button" href="https://www.linkedin.com/shareArticle?mini=true&url=${encodedUrl}&title=${encodedText}" target="_blank" rel="noopener"><span class="share-label">LinkedIn</span></a>
+          <a class="share-button" href="mailto:?subject=${encodedText}&body=${encodedUrl}" target="_blank" rel="noopener"><span class="share-label">Email</span></a>
+        </div>
+        <p class="share-hint">Share this article with someone who might appreciate it.</p>
+      `;
+
+      share.querySelector('.share-copy').addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText(url);
+          share.querySelector('.share-hint').textContent = 'Link copied to clipboard!';
+        } catch {
+          share.querySelector('.share-hint').textContent = 'Copy failed. Please try manually.';
+        }
+      });
+
+      articleEl.appendChild(share);
+    }
+
+    async function loadPost() {
+      const params = new URLSearchParams(window.location.search);
+      const postPath = params.get('post');
+      const articleEl = document.getElementById('post-article');
+
+      if (!postPath) {
+        articleEl.innerHTML = '<p class="error-message">We couldn’t find the requested article.</p>';
+        return;
+      }
+
+      if (window.location.protocol === 'file:') {
+        articleEl.innerHTML = '<p class="error-message">To read this article please run the site from a local server (e.g. <code>python3 -m http.server</code>).</p>';
+        return;
+      }
+
+      try {
+        const response = await fetch(`posts/${postPath}`, { cache: 'no-store' });
+        if (!response.ok) throw new Error(`Missing article: ${postPath}`);
+        const raw = await response.text();
+        const { meta, content } = parseFrontMatter(raw);
+        applyMeta(meta);
+        let html = window.marked ? marked.parse(content) : content;
+        if (window.DOMPurify) html = DOMPurify.sanitize(html);
+        articleEl.innerHTML = html;
+        cleanWordPressArtifacts(articleEl);
+        renderShareActions(articleEl);
+      } catch (error) {
+        console.error('Failed to load article:', error);
+        articleEl.innerHTML = '<p class="error-message">Unable to load this article. Please try again later.</p>';
+      }
+    }
+
+    loadPost();
+  </script>
+</body>
+</html>

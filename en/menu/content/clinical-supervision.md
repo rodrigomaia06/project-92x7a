@@ -1,0 +1,2 @@
+A Supervisão é um espaço seguro para crescer como terapeuta. Não é um lugar de julgamento, mas de partilha, afinação e descoberta. Onde o pensamento é livre!  
+Aqui exploramos casos, refletimos sobre a relação terapêutica, acolhemos dúvidas e celebramos conquistas. Porque cuidar de quem cuida também é essencial, e porque na prática clínica, todos precisamos de alguém com quem pensar, sentir e caminhar lado a lado.

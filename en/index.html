@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Matilde Batalha | Clinical Psychology</title>
+  <meta name="description" content="Clinical Psychologist and Psychotherapist based in Portugal.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cardo:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-lang="en">
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <div class="site">
+    <div data-include="header" data-current-lang="en" data-pt-url="/pt/index.html" data-en-url="/en/index.html"></div>
+
+
+    <!-- ====== MAIN ====== -->
+    <main id="main-content">
+      <section class="hero">
+        <div class="container hero-inner">
+          <div class="hero-copy">
+            <h1>About me…</h1>
+            <p>Hello, I’m Matilde Batalha, psychologist and psychotherapist. This space introduces my integrative way of working and the values that guide my practice.</p>
+            <p>I honour the uniqueness of each person — there is no single intervention that fits every story. Continuous learning allows me to support you with care, depth, and scientific grounding.</p>
+            <p>Here you will find articles, reflections, and resources on mental health, relationships, nature, and inner growth.</p>
+          </div>
+          <figure class="hero-portrait">
+            <img src="static/site/hero.jpg" alt="Portrait of Matilde Batalha" width="346" height="400" loading="lazy">
+          </figure>
+        </div>
+      </section>
+
+      <section class="articles">
+        <div class="container">
+          <h2>Articles to read and discuss — “Dialogue creates light”</h2>
+
+          <div class="post-list" data-state="loading">
+            <p class="loading-message">Loading articles…</p>
+          </div>
+
+          <nav class="pagination" aria-label="Pagination">
+            <button class="pagination-button prev" type="button" aria-label="Previous page">←</button>
+            <div class="pagination-numbers"></div>
+            <button class="pagination-button next" type="button" aria-label="Next page">→</button>
+          </nav>
+        </div>
+      </section>
+
+    </main>
+
+        <div data-include="footer"></div>
+
+  </div>
+
+  <!-- ====== SCRIPTS ====== -->
+    <script type="module" src="scripts/include.js"></script>
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+    const monthFormatter = new Intl.DateTimeFormat('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+    const POSTS_PER_PAGE = 8;
+    let currentPage = 1;
+    let postsData = [];
+
+    function formatDate(iso) {
+      if (!iso) return '';
+      const date = new Date(iso);
+      return Number.isNaN(date.getTime()) ? '' : monthFormatter.format(date);
+    }
+
+    function createPostArticle(post) {
+      const article = document.createElement('article');
+      article.className = 'post';
+
+      const content = document.createElement('div');
+      content.className = 'post-content';
+
+      const title = document.createElement('h3');
+      const link = document.createElement('a');
+      link.href = `post.html?post=${encodeURIComponent(post.path)}`;
+      link.textContent = post.title;
+      title.append(link);
+
+      const excerpt = document.createElement('p');
+      excerpt.className = 'post-excerpt';
+      excerpt.textContent = post.excerpt || '';
+
+      content.append(title, excerpt);
+
+      const meta = document.createElement('div');
+      meta.className = 'post-meta';
+
+      if (post.date) {
+        const time = document.createElement('time');
+        time.dateTime = post.date;
+        time.textContent = formatDate(post.date);
+        meta.append(time);
+      }
+
+      const author = document.createElement('span');
+      author.className = 'post-author';
+      author.innerHTML = 'by <span class="author-name">Matilde Batalha</span>';
+      meta.append(author);
+
+      if (Array.isArray(post.categories) && post.categories.length) {
+        const categories = document.createElement('span');
+        categories.className = 'post-categories';
+        const prefix = document.createElement('span');
+        prefix.className = 'category-prefix';
+        prefix.textContent = 'in ';
+        categories.append(prefix);
+        post.categories.forEach((category, index) => {
+          const catEl = document.createElement('span');
+          catEl.className = 'category';
+          catEl.textContent = category;
+          categories.append(catEl);
+          if (index < post.categories.length - 1) {
+            categories.append(document.createTextNode(', '));
+          }
+        });
+        meta.append(categories);
+      }
+
+      article.append(content, meta);
+      return article;
+    }
+
+    function renderPosts() {
+      const listEl = document.querySelector('.post-list');
+      if (!listEl) return;
+      listEl.innerHTML = '';
+      const start = (currentPage - 1) * POSTS_PER_PAGE;
+      const pagePosts = postsData.slice(start, start + POSTS_PER_PAGE);
+      pagePosts.forEach(post => listEl.append(createPostArticle(post)));
+    }
+
+    function renderPagination() {
+      const pagination = document.querySelector('.pagination');
+      if (!pagination) return;
+      const prevButton = pagination.querySelector('.prev');
+      const nextButton = pagination.querySelector('.next');
+      const numbersContainer = pagination.querySelector('.pagination-numbers');
+      const totalPages = Math.max(1, Math.ceil(postsData.length / POSTS_PER_PAGE));
+
+      prevButton.disabled = currentPage === 1;
+      nextButton.disabled = currentPage === totalPages;
+
+      numbersContainer.innerHTML = '';
+      for (let page = 1; page <= totalPages; page += 1) {
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = `pagination-number${page === currentPage ? ' current' : ''}`;
+        button.textContent = page;
+        button.setAttribute('aria-label', `Go to page ${page}`);
+        button.addEventListener('click', () => {
+          currentPage = page;
+          renderPosts();
+          renderPagination();
+          window.scrollTo({ top: document.querySelector('.articles').offsetTop - 80, behavior: 'smooth' });
+        });
+        numbersContainer.append(button);
+      }
+    }
+
+    function setupPaginationControls() {
+      const pagination = document.querySelector('.pagination');
+      if (!pagination) return;
+      const prevButton = pagination.querySelector('.prev');
+      const nextButton = pagination.querySelector('.next');
+      prevButton.addEventListener('click', () => {
+        if (currentPage > 1) {
+          currentPage -= 1;
+          renderPosts();
+          renderPagination();
+          window.scrollTo({ top: document.querySelector('.articles').offsetTop - 80, behavior: 'smooth' });
+        }
+      });
+      nextButton.addEventListener('click', () => {
+        const totalPages = Math.max(1, Math.ceil(postsData.length / POSTS_PER_PAGE));
+        if (currentPage < totalPages) {
+          currentPage += 1;
+          renderPosts();
+          renderPagination();
+          window.scrollTo({ top: document.querySelector('.articles').offsetTop - 80, behavior: 'smooth' });
+        }
+      });
+    }
+
+    async function loadPosts() {
+      const listEl = document.querySelector('.post-list');
+      if (!listEl) return;
+
+      if (window.location.protocol === 'file:') {
+        listEl.innerHTML = '<p class="error-message">To view the articles please run the site from a local server (e.g. <code>python3 -m http.server</code>).</p>';
+        document.querySelector('.pagination').classList.add('is-hidden');
+        return;
+      }
+
+      try {
+        const response = await fetch('posts/index.json', { cache: 'no-store' });
+        if (!response.ok) throw new Error('Failed to load manifest');
+        const posts = await response.json();
+        postsData = posts.sort((a, b) => new Date(b.date || 0) - new Date(a.date || 0));
+        currentPage = 1;
+        renderPosts();
+        renderPagination();
+      } catch (error) {
+        console.error(error);
+        listEl.innerHTML = '<p class="error-message">Unable to load the articles. Please try again later.</p>';
+        document.querySelector('.pagination').classList.add('is-hidden');
+      }
+    }
+
+    setupPaginationControls();
+    loadPosts();
+    });
+  </script>
+</body>
+</html>
