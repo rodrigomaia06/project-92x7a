@@ -3,6 +3,8 @@
 - Especialista em Psicologia Clínica e da Saúde
 - Especialidades Avançadas : Psicoterapia; Psicogerontologia e Psicologia Comunitária.
 
+---
+
 ## Resumo da Formação Académica
 
 - Certificação Level 1 Training em Internal Family Systems Therapy – IFS Institute
@@ -13,7 +15,9 @@
 - Formadora – Curso de Formação Pedagógica Inicial de Formadores, (antigo CAP).
 - Psicóloga (Área de  Clínica) pelo Instituto Superior de Psicologia Aplicada (ISPA), Lisboa.
 
-- Formações adicionais na área da Psicoterapia Psicanalítica; Psicoterapia Transpessoal, Psicodrama, Gestalt Terapia e Psicoterapia Cognitivo Comportamental.
+> Formações adicionais na área da Psicoterapia Psicanalítica; Psicoterapia Transpessoal, Psicodrama, Gestalt Terapia e Psicoterapia Cognitivo Comportamental.
+
+---
 
 ## Resumo da Experiência Profissional
 
@@ -29,7 +33,9 @@
 - Set. 2003- Dez 2005 –  Formadora no Centros de Formação de Professores  de Peniche.
 - Out. 2000- Set. 2007 –  Psicóloga na categoria de Técnico Superior de 2ª classe no Ex-Hospital Miguel Bombarda, atual Centro Hospitalar Psiquiátrico de Lisboa, no Serviço de Psicologia (de Out.2000- Jul.2004) e na Unidade de Psiquiatra da Pessoa Idosa, UPPI (Ago. 2004- Set. 2007).
 
-Colaboração semanal na RCM 105.6 FM Rádio Concelho de Mafra, quintas 10:30. (De Março 2020 a Março 2023)
+> Colaboração semanal na RCM 105.6 FM Rádio Concelho de Mafra, quintas 10:30. (De Março 2020 a Março 2023)
+
+---
 
 ## Membro certificada da
 

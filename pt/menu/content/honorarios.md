@@ -1,5 +1,7 @@
-O Valor é válido para sessões online  
-Custos adicionais relatório: 200€
+> O Valor é válido para sessões online  
+> Custos adicionais relatório: 200€
+
+---
 
 |  |  |  |
 | --- | --- | --- |
@@ -11,20 +13,22 @@ Custos adicionais relatório: 200€
 | Supervisão Individual | 65€/hora |  |
 | Supervisão Grupo | 30€/hora  (2 h -grupos 4 px máximo) |  |
 
-**Política de cancelamento e faltas a consultas**
+---
 
-​Os imprevistos acontecem e é meu compromisso fornecer um serviço flexível e compassivo aos meus clientes. No entanto, para manter a eficiência agendamento e garantir que todos os clientes recebam o melhor atendimento possível, existe a seguinte política de cancelamento:
+### Política de cancelamento e faltas a consultas
 
-**Cancelamento com Aviso Prévio**
+> ​Os imprevistos acontecem e é meu compromisso fornecer um serviço flexível e compassivo aos meus clientes. No entanto, para manter a eficiência agendamento e garantir que todos os clientes recebam o melhor atendimento possível, existe a seguinte política de cancelamento:
 
- Avise pelo menos com 24 horas de antecedência caso precise cancelar ou reagendar sua consulta. Isso permite ajustar o horário e atender outros clientes que possam precisar dos mesmos serviços.
+#### Cancelamento com Aviso Prévio
 
-**Cancelamento sem Aviso Prévio**
+>  Avise pelo menos com 24 horas de antecedência caso precise cancelar ou reagendar sua consulta. Isso permite ajustar o horário e atender outros clientes que possam precisar dos mesmos serviços.
 
- Consultas canceladas com menos de 24 horas de antecedência ou não comparecidas serão sujeitas a uma taxa de cancelamento que é equivalente ao valor de uma sessão.
+#### Cancelamento sem Aviso Prévio
 
-**Exceções**
+>  Consultas canceladas com menos de 24 horas de antecedência ou não comparecidas serão sujeitas a uma taxa de cancelamento que é equivalente ao valor de uma sessão.
 
-Compreendendo que emergências podem surgir serão consideradas circunstâncias excecionais caso a caso. Se surgiu uma emergência que o impeça de comparecer à consulta, entre em contato o mais rápido possível para discutir as opções disponíveis.
+#### Exceções
 
-Agradeço a sua compreensão e cooperação.
+> Compreendendo que emergências podem surgir serão consideradas circunstâncias excecionais caso a caso. Se surgiu uma emergência que o impeça de comparecer à consulta, entre em contato o mais rápido possível para discutir as opções disponíveis.
+
+> Agradeço a sua compreensão e cooperação.
